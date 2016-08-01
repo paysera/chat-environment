@@ -1,0 +1,45 @@
+version: '2'
+services:
+  haproxy:
+    image: dockercloud/haproxy:1.5.2
+    ports:
+      - 3000:80
+    links:
+      - rocketchat
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - rocketchat
+
+  rocketchat:
+    image: rocketchat/rocket.chat:0.35.0
+    volumes:
+      - rocketchat:/app/uploads
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:3.3.5
+    volumes:
+      - mongo:/data/db
+    env_file:
+      - .env
+    command: mongod --smallfiles --oplogSize 128
+
+  hubot:
+    image: rocketchat/hubot-rocketchat:v0.1.4
+    environment:
+      - ROCKETCHAT_URL=rocketchat:3000
+    env_file:
+      - .env
+    depends_on:
+      - rocketchat
+
+volumes:
+  rocketchat: {}
+  mongo: {}
