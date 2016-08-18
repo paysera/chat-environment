@@ -1,7 +1,7 @@
 version: '2'
 services:
   haproxy:
-    image: dockercloud/haproxy:1.5.2
+    image: dockercloud/haproxy:1.5.3
     ports:
       - 3000:80
     links:
@@ -12,7 +12,7 @@ services:
       - rocketchat
 
   rocketchat:
-    image: rocketchat/rocket.chat:0.35.0
+    image: rocketchat/rocket.chat:0.37.1
     volumes:
       - rocketchat:/app/uploads
     environment:
@@ -24,7 +24,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:3.3.5
+    image: mongo:3.3.11
     volumes:
       - mongo:/data/db
     env_file:
