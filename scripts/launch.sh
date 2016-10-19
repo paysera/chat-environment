@@ -13,3 +13,8 @@ fi
 # Run
 ${GIT_BIN_DIRECTORY}/git pull
 ${DOCKER_COMPOSER_BIN_DIRECTORY}/docker-compose up -d --force-recreate
+
+# Load plugins
+if [ -e ".plugins" ]; then
+    source .plugins
+fi
