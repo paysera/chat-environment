@@ -19,9 +19,9 @@ docker-compose scale rocketchat=4
 ### Plugins
 ##### Create .plugins file
 ```bash
-echo -e "\${DOCKER_BIN_DIRECTORY}/docker exec -it chatenvironment_hubot_1 npm install hubot-giphy --save\n\${DOCKER_COMPOSER_BIN_DIRECTORY}/docker-compose restart\n" > .plugins 
+echo -e "\${DOCKER_BIN_DIRECTORY}/docker exec -it chatenvironment_hubot_1 npm install hubot-giphy --save\n" > .plugins 
 ```
-##### Add plugins to .env file
+##### Add plugin to .env file
 ```bash
 sed -i '/^EXTERNAL_SCRIPTS/ s/$/,hubot-giphy/' .env
 ```
