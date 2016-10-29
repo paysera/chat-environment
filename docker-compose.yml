@@ -14,7 +14,7 @@ services:
       - rocketchat
 
   rocketchat:
-    image: rocketchat/rocket.chat:0.40.1
+    image: rocketchat/rocket.chat:0.43.0
     volumes:
       - rocketchat:/app/uploads
     environment:
