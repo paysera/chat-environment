@@ -14,7 +14,7 @@ services:
       - rocketchat
 
   rocketchat:
-    image: rocketchat/rocket.chat:0.43.0
+    image: rocketchat/rocket.chat:0.46.0
     volumes:
       - rocketchat:/app/uploads
     environment:
@@ -41,7 +41,7 @@ services:
       - 6379
 
   hubot:
-    image: rocketchat/hubot-rocketchat:v1.0.5
+    image: rocketchat/hubot-rocketchat:v1.0.6
     environment:
       - ROCKETCHAT_URL=rocketchat:3000
       - REDIS_URL=redis://redis:6379
