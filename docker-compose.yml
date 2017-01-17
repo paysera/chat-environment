@@ -1,7 +1,7 @@
 version: '2'
 services:
   haproxy:
-    image: dockercloud/haproxy:1.5.2
+    image: dockercloud/haproxy:1.6.2
     ports:
       - 3000:80
     links:
@@ -14,7 +14,7 @@ services:
       - rocketchat
 
   rocketchat:
-    image: rocketchat/rocket.chat:0.47.0
+    image: rocketchat/rocket.chat:0.49.2
     volumes:
       - rocketchat:/app/uploads
     environment:
