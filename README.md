@@ -11,11 +11,6 @@ echo -e "ROOT_URL=https://chat.example.com\nMAIL_URL=smtp://mail.example.com:25\
 ./scripts/launch.sh
 ```
 
-##### scale
-```bash
-docker-compose scale rocketchat=4
-```
-
 ### Plugins
 ##### Create .plugins file
 ```bash
