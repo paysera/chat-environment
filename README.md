@@ -4,6 +4,10 @@
 ```bash
 echo -e "ROOT_URL=https://chat.example.com\nMAIL_URL=smtp://mail.example.com:25\nROCKETCHAT_PASSWORD=botpassword\nROCKETCHAT_ROOM=GENERAL\nROCKETCHAT_USER=bot\nBOT_NAME=bot\nLISTEN_ON_ALL_PUBLIC=true\nEXTERNAL_SCRIPTS=hubot-help,hubot-links,hubot-standup-alarm,hubot-redis-brain" > .env 
 ```
+##### Create .proxy_env file
+```bash
+echo -e "VIRTUAL_HOST=chat.example.com\n" > .proxy_env 
+```
 
 ### Control
 ##### Start/restart environment
