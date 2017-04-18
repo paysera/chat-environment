@@ -1,3 +1,4 @@
 .local
 .env
+.proxy_env
 .plugins
