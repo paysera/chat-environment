@@ -12,6 +12,7 @@ services:
     image: rocketchat/rocket.chat:0.54.2
     volumes:
       - rocketchat:/app/uploads
+      - rocketchat:/tmp/ufs
     environment:
       - PORT=3000
       - MONGO_URL=mongodb://mongo:27017/rocketchat
