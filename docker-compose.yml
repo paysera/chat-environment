@@ -41,7 +41,6 @@ services:
   hubot:
     image: rocketchat/hubot-rocketchat:v1.0.6
     environment:
-      - ROCKETCHAT_URL=rocketchat:3000
       - REDIS_URL=redis://redis:6379
     env_file:
       - .env
