@@ -9,7 +9,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   rocketchat:
-    image: rocketchat/rocket.chat:0.57.2
+    image: rocketchat/rocket.chat:0.57.3
     volumes:
       - rocketchat:/app/uploads
       - rocketchat:/tmp/ufs
