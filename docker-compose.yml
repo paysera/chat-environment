@@ -9,7 +9,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   rocketchat:
-    image: rocketchat/rocket.chat:0.60.3
+    image: rocketchat/rocket.chat:0.62.2
     volumes:
       - rocketchat:/app/uploads
       - rocketchat:/tmp/ufs
@@ -31,24 +31,6 @@ services:
       - .env
     command: mongod --smallfiles --oplogSize 128 --replSet rs0
 
-  redis:
-    image: redis:3.2.5
-    volumes:
-      - redis:/data
-    ports:
-      - 6379
-
-  hubot:
-    image: rocketchat/hubot-rocketchat:v1.0.11
-    environment:
-      - REDIS_URL=redis://redis:6379
-    env_file:
-      - .env
-    depends_on:
-      - rocketchat
-      - redis
-
 volumes:
   rocketchat: {}
-  redis: {}
   mongo: {}
