@@ -7,19 +7,66 @@ services:
       - "3000:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.10
 
-  rocketchat:
-    image: rocketchat/rocket.chat:0.62.2
+  rocketchat0:
+    image: rocketchat/rocket.chat:0.65.1
     volumes:
       - rocketchat:/app/uploads
       - rocketchat:/tmp/ufs
     environment:
       - PORT=3000
-      - MONGO_URL=mongodb://mongo:27017/rocketchat
-      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
+      - MONGO_URL=mongodb://mongo:27017,mongo0:27017,mongo1:27017/rocketchat?replicaSet=rs0&readPreference=nearest&w=majority
+      - MONGO_OPLOG_URL=mongodb://mongo:27017,mongo0:27017,mongo1:27017/local?replicaSet=rs0
+      - INSTANCE_IP=10.50.0.30
     env_file:
       - .env
       - .proxy_env
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.30
+    depends_on:
+      - mongo
+
+  rocketchat1:
+    image: rocketchat/rocket.chat:0.65.1
+    volumes:
+      - rocketchat:/app/uploads
+      - rocketchat:/tmp/ufs
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - MONGO_URL=mongodb://mongo:27017,mongo0:27017,mongo1:27017/rocketchat?replicaSet=rs0&readPreference=nearest&w=majority
+      - MONGO_OPLOG_URL=mongodb://mongo:27017,mongo0:27017,mongo1:27017/local?replicaSet=rs0
+      - INSTANCE_IP=10.50.0.31
+    env_file:
+      - .env
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.31
+    depends_on:
+      - mongo
+
+  rocketchat2:
+    image: rocketchat/rocket.chat:0.65.1
+    volumes:
+      - rocketchat:/app/uploads
+      - rocketchat:/tmp/ufs
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - MONGO_URL=mongodb://mongo:27017,mongo0:27017,mongo1:27017/rocketchat?replicaSet=rs0&readPreference=nearest&w=majority
+      - MONGO_OPLOG_URL=mongodb://mongo:27017,mongo0:27017,mongo1:27017/local?replicaSet=rs0
+      - INSTANCE_IP=10.50.0.32
+    env_file:
+      - .env
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.32
     depends_on:
       - mongo
 
@@ -27,10 +74,39 @@ services:
     image: mongo:3.2
     volumes:
       - mongo:/data/db
-    env_file:
-      - .env
     command: mongod --smallfiles --oplogSize 128 --replSet rs0
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.23
+
+  mongo0:
+    image: mongo:3.2
+    volumes:
+      - mongo0:/data/db
+    command: mongod --smallfiles --oplogSize 128 --replSet rs0
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.20
+
+  mongo1:
+    image: mongo:3.2
+    volumes:
+      - mongo1:/data/db
+    command: mongod --smallfiles --oplogSize 128 --replSet rs0
+    networks:
+      rocketchat:
+        ipv4_address: 10.50.0.21
+
+networks:
+  rocketchat:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.50.0.0/16
+         gateway: 10.50.0.1
 
 volumes:
   rocketchat: {}
   mongo: {}
+  mongo0: {}
+  mongo1: {}
