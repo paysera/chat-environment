@@ -13,6 +13,7 @@ services:
 
   rocketchat0:
     image: rocketchat/rocket.chat:0.65.1
+    mem_limit: 1000m
     volumes:
       - rocketchat:/app/uploads
       - rocketchat:/tmp/ufs
@@ -32,6 +33,7 @@ services:
 
   rocketchat1:
     image: rocketchat/rocket.chat:0.65.1
+    mem_limit: 1000m
     volumes:
       - rocketchat:/app/uploads
       - rocketchat:/tmp/ufs
@@ -52,6 +54,7 @@ services:
 
   rocketchat2:
     image: rocketchat/rocket.chat:0.65.1
+    mem_limit: 1000m
     volumes:
       - rocketchat:/app/uploads
       - rocketchat:/tmp/ufs
@@ -72,6 +75,7 @@ services:
 
   mongo:
     image: mongo:3.2
+    mem_limit: 3000m
     volumes:
       - mongo:/data/db
     command: mongod --smallfiles --oplogSize 128 --replSet rs0
@@ -81,6 +85,7 @@ services:
 
   mongo0:
     image: mongo:3.2
+    mem_limit: 3000m
     volumes:
       - mongo0:/data/db
     command: mongod --smallfiles --oplogSize 128 --replSet rs0
@@ -90,6 +95,7 @@ services:
 
   mongo1:
     image: mongo:3.2
+    mem_limit: 3000m
     volumes:
       - mongo1:/data/db
     command: mongod --smallfiles --oplogSize 128 --replSet rs0
