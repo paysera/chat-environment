@@ -4,10 +4,6 @@
 ```bash
 echo -e "ROOT_URL=https://chat.example.com\nMAIL_URL=smtp://mail.example.com:25\nROCKETCHAT_URL=https://chat.example.com" > .env 
 ```
-##### Create .proxy_env file
-```bash
-echo -e "VIRTUAL_HOST=chat.example.com\n" > .proxy_env 
-```
 
 ##### Init mongo replica
 ```bash
