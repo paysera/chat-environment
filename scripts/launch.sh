@@ -3,7 +3,7 @@
 # Config
 GIT_BIN_DIRECTORY=/usr/bin
 DOCKER_BIN_DIRECTORY=/usr/bin
-DOCKER_COMPOSER_BIN_DIRECTORY=/usr/local/bin
+DOCKER_COMPOSER_BIN_DIRECTORY=/usr/bin
 
 # Load local config
 if [ -e ".local" ]; then
