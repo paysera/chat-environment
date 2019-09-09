@@ -1,7 +1,7 @@
 version: '2'
 services:
   rocketchat0:
-    image: rocketchat/rocket.chat:1.1.1
+    image: rocketchat/rocket.chat:1.3.2
     mem_limit: 1000m
     restart: on-failure
     volumes:
@@ -24,7 +24,7 @@ services:
       - mongo
 
   rocketchat1:
-    image: rocketchat/rocket.chat:1.1.1
+    image: rocketchat/rocket.chat:1.3.2
     restart: on-failure
     mem_limit: 1000m
     volumes:
@@ -47,7 +47,7 @@ services:
       - mongo
 
   rocketchat2:
-    image: rocketchat/rocket.chat:1.1.1
+    image: rocketchat/rocket.chat:1.3.2
     restart: on-failure
     mem_limit: 1000m
     volumes:
